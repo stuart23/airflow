@@ -1896,7 +1896,7 @@ class Airflow(AirflowBaseView):
         # Upon success return to origin.
         return redirect(origin)
 
-    @expose("/trigger", methods=["POST", "GET"])
+    @expose("/dags/<string:dag_id>/trigger", methods=["POST", "GET"])
     @auth.has_access(
         [
             (permissions.ACTION_CAN_EDIT, permissions.RESOURCE_DAG),
@@ -1905,9 +1905,8 @@ class Airflow(AirflowBaseView):
     )
     @action_logging
     @provide_session
-    def trigger(self, session: Session = NEW_SESSION):
+    def trigger(self, dag_id: str, session: Session = NEW_SESSION):
         """Triggers DAG Run."""
-        dag_id = request.values["dag_id"]
         run_id = request.values.get("run_id", "")
         origin = get_safe_url(request.values.get("origin"))
         unpause = request.values.get("unpause")
@@ -1943,6 +1942,7 @@ class Airflow(AirflowBaseView):
                 form_fields[k]["schema"]["custom_html_form"] = Markup(
                     form_fields[k]["schema"]["custom_html_form"]
                 )
+        ui_fields_defined = any("const" not in f["schema"] for f in form_fields.values())
 
         if not dag_orm:
             flash(f"Cannot find dag {dag_id}")
@@ -1973,7 +1973,7 @@ class Airflow(AirflowBaseView):
             if isinstance(recent_conf, dict) and any(recent_conf):
                 recent_confs[getattr(run, "run_id")] = json.dumps(recent_conf)
 
-        if request.method == "GET":
+        if request.method == "GET" and ui_fields_defined:
             # Populate conf textarea with conf requests parameter, or dag.params
             default_conf = ""
 
@@ -1994,6 +1994,7 @@ class Airflow(AirflowBaseView):
             return self.render_template(
                 "airflow/trigger.html",
                 form_fields=form_fields,
+                dag=dag,
                 dag_id=dag_id,
                 origin=origin,
                 conf=default_conf,
@@ -2011,9 +2012,10 @@ class Airflow(AirflowBaseView):
             return self.render_template(
                 "airflow/trigger.html",
                 form_fields=form_fields,
+                dag=dag,
                 dag_id=dag_id,
                 origin=origin,
-                conf=request_conf,
+                conf=request_conf if request_conf else {},
                 form=form,
                 is_dag_run_conf_overrides_params=is_dag_run_conf_overrides_params,
                 recent_confs=recent_confs,
@@ -2046,6 +2048,7 @@ class Airflow(AirflowBaseView):
                     return self.render_template(
                         "airflow/trigger.html",
                         form_fields=form_fields,
+                        dag=dag,
                         dag_id=dag_id,
                         origin=origin,
                         conf=request_conf,
@@ -2059,6 +2062,7 @@ class Airflow(AirflowBaseView):
                 return self.render_template(
                     "airflow/trigger.html",
                     form_fields=form_fields,
+                    dag=dag,
                     dag_id=dag_id,
                     origin=origin,
                     conf=request_conf,
@@ -2092,6 +2096,7 @@ class Airflow(AirflowBaseView):
             return self.render_template(
                 "airflow/trigger.html",
                 form_fields=form_fields,
+                dag=dag,
                 dag_id=dag_id,
                 origin=origin,
                 conf=request_conf,
