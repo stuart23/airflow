@@ -480,9 +480,9 @@ class _TaskDecorator(ExpandableFactory, Generic[FParams, FReturn, OperatorSubcla
 
     def override(self, **kwargs: Any) -> _TaskDecorator[FParams, FReturn, OperatorSubclass]:
         result = attr.evolve(self, kwargs={**self.kwargs, **kwargs})
-        setattr(result, "_is_setup", self._is_setup)
-        setattr(result, "_is_teardown", self._is_teardown)
-        setattr(result, "_on_failure_fail_dagrun", self._on_failure_fail_dagrun)
+        setattr(result, "is_setup", self.is_setup)
+        setattr(result, "is_teardown", self.is_teardown)
+        setattr(result, "on_failure_fail_dagrun", self.on_failure_fail_dagrun)
         return result
 
 
