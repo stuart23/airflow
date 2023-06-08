@@ -32,26 +32,26 @@ No significant changes.
 Bug Fixes
 ^^^^^^^^^
 - Fix Kubernetes executor set wrong task status (#31274)
-- Use keyword paramaters for migration methods for mssql (#31309)
+- Use keyword parameters for migration methods for mssql (#31309)
 - Control permissibility of driver config in extra from airflow.cfg (#31754)
-- Retain on_failure_fail_dagrun attr when other task attrs are overriden (#31678)
+- Retain on_failure_fail_dagrun attr when other task attrs are overridden (#31678)
 - fixing broken links in openapi/v1.yaml (#31619)
 - Hide old alert box when testing conn with different value (#31606)
 - Add TriggererStatus to OpenAPI spec (#31579)
 - Resolving issue where Grid won't un-collapse when Details is collapsed (#31561)
 - Fix sorting of tags (#31553)
-- Add the missing `map_index` to the xcom key when skipping downstream tasks (#31541)
+- Add the missing map_index to the xcom key when skipping downstream tasks (#31541)
 - fix airflow users delete CLI command (#31539)
 - Include triggerer health status in Airflow /health endpoint (#31529)
 - Remove dependency already registered for this task warning (#31502)
 - Use kube_client over default CoreV1Api for deleting pods (#31477)
 - Ensure min backoff in base sensor is at least 1 (#31412)
-- Fix `max_active_tis_per_dagrun` for Dynamic Task Mapping (#31406)
+- Fix max_active_tis_per_dagrun for Dynamic Task Mapping (#31406)
 - Fix error handling when pre-importing modules in DAGs (#31401)
 - Fix dropdown default and adjust tutorial to use 42 as default for proof (#31400)
 - Fix crash when clearing run with task from normal to mapped (#31352)
 - Make BaseJobRunner a generic on the job class (#31287)
-- Fix `url_for_asset` fallback and 404 on DAG Audit Log (#31233)
+- Fix url_for_asset fallback and 404 on DAG Audit Log (#31233)
 - Don't present an undefined execution date (#31196)
 - Added spinner activity while the logs load (#31165)
 - Include rediss to the list of supported URL schemes (#31028)
@@ -62,8 +62,8 @@ Bug Fixes
 - Fix failing get_safe_url tests for latest Python 3.8 and 3.9 (#31766)
 - Fix typing for POST user endpoint (#31767)
 - Fix wrong update for nested group default args (#31776)
-- Fix overriding `default_args` in nested task groups (#31608)
-- Mark `[secrets] backend_kwargs` as a sensitive config (#31788)
+- Fix overriding default_args in nested task groups (#31608)
+- Mark [secrets] backend_kwargs as a sensitive config (#31788)
 
 Misc/Internal
 """""""""""""
@@ -81,11 +81,11 @@ Misc/Internal
 - Executor events are not always "exited" here (#30859)
 - Rephrase comment in setup.py (#31312)
 
-Doc-only changes
+Doc only changes
 ^^^^^^^^^^^^^^^^
 - update path of KubernetesPodOperator in core docs (#31683)
 - Fix wrong cron syntax (#31666)
-- 📝 Update release documentation (#31631)
+- Update release documentation (#31631)
 - Add docstring and signature for _read_remote_logs (#31623)
 - Updating UI screenshots in docs (#31577)
 - Remove typo in docs serializers.rst (#31507)
@@ -96,7 +96,7 @@ Doc-only changes
 - Fix task.branch error caused by incorrect initial parameter (#31265)
 - Update callbacks documentation (errors and context) (#31116)
 - Add an example for dynamic task mapping with non-TaskFlow operator (#29762)
-- Few doc fixes - links, grammer and wording (#31719)
+- Few doc fixes - links, grammar and wording (#31719)
 - Add description in a few more places about adding airflow to pip install (#31448)
 
 Improvement Changes
