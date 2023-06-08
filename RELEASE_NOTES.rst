@@ -21,6 +21,94 @@
 
 .. towncrier release notes start
 
+Airflow 2.6.2 (2023-06-12)
+--------------------------
+
+Significant Changes
+^^^^^^^^^^^^^^^^^^^
+
+No significant changes.
+
+Bug Fixes
+^^^^^^^^^
+- Fix Kubernetes executor set wrong task status (#31274)
+- Use keyword paramaters for migration methods for mssql (#31309)
+- Control permissibility of driver config in extra from airflow.cfg (#31754)
+- Retain on_failure_fail_dagrun attr when other task attrs are overriden (#31678)
+- fixing broken links in openapi/v1.yaml (#31619)
+- Hide old alert box when testing conn with different value (#31606)
+- Add TriggererStatus to OpenAPI spec (#31579)
+- Resolving issue where Grid won't un-collapse when Details is collapsed (#31561)
+- Fix sorting of tags (#31553)
+- Add the missing `map_index` to the xcom key when skipping downstream tasks (#31541)
+- fix airflow users delete CLI command (#31539)
+- Include triggerer health status in Airflow /health endpoint (#31529)
+- Remove dependency already registered for this task warning (#31502)
+- Use kube_client over default CoreV1Api for deleting pods (#31477)
+- Ensure min backoff in base sensor is at least 1 (#31412)
+- Fix `max_active_tis_per_dagrun` for Dynamic Task Mapping (#31406)
+- Fix error handling when pre-importing modules in DAGs (#31401)
+- Fix dropdown default and adjust tutorial to use 42 as default for proof (#31400)
+- Fix crash when clearing run with task from normal to mapped (#31352)
+- Make BaseJobRunner a generic on the job class (#31287)
+- Fix `url_for_asset` fallback and 404 on DAG Audit Log (#31233)
+- Don't present an undefined execution date (#31196)
+- Added spinner activity while the logs load (#31165)
+- Include rediss to the list of supported URL schemes (#31028)
+- Optimize scheduler by skipping "non-scheduable" DAGs (#30706)
+- Save scheduler execution time during search for queued dag_runs (#30699)
+- Fix ExternalTaskSensor to work correctly with task groups (#30742)
+- Fix DAG.access_control can't sync when clean access_control (#30340)
+- Fix failing get_safe_url tests for latest Python 3.8 and 3.9 (#31766)
+- Fix typing for POST user endpoint (#31767)
+- Fix wrong update for nested group default args (#31776)
+- Fix overriding `default_args` in nested task groups (#31608)
+- Mark `[secrets] backend_kwargs` as a sensitive config (#31788)
+
+Misc/Internal
+"""""""""""""
+- Replace unicodecsv with standard csv library (#31693)
+- Small cleanups / optimizations in DagRun.update_state (#31628)
+- Remove found_descendents param from get_flat_relative_ids (#31559)
+- Fix typing in external task triggers (#31490)
+- Wording the next and last run DAG columns better (#31467)
+- Skip auto-document things with :meta private: (#31380)
+- Add an example for sql_alchemy_connect_args conf (#31332)
+- Convert dask upper-binding into exclusion (#31329)
+- Upgrade FAB to 4.3.1 (#31203)
+- Added metavar and choices to --state flag in airflow dags list-jobs CLI for suggesting valid state arguments. (#31308)
+- Use only one line for tmp dir log (#31170)
+- Executor events are not always "exited" here (#30859)
+- Rephrase comment in setup.py (#31312)
+
+Doc-only changes
+^^^^^^^^^^^^^^^^
+- update path of KubernetesPodOperator in core docs (#31683)
+- Fix wrong cron syntax (#31666)
+- 📝 Update release documentation (#31631)
+- Add docstring and signature for _read_remote_logs (#31623)
+- Updating UI screenshots in docs (#31577)
+- Remove typo in docs serializers.rst (#31507)
+- Remove note about triggerer being 3.7+ only (#31483)
+- Fix version support information (#31468)
+- Add missing BashOperator import to documentation example (#31436)
+- Update the output of airflow info command in the doc (#31336)
+- Fix task.branch error caused by incorrect initial parameter (#31265)
+- Update callbacks documentation (errors and context) (#31116)
+- Add an example for dynamic task mapping with non-TaskFlow operator (#29762)
+- Few doc fixes - links, grammer and wording (#31719)
+- Add description in a few more places about adding airflow to pip install (#31448)
+
+Improvement Changes
+^^^^^^^^^^^^^^^^^^^
+- Trigger Button - Implement Part 2 of AIP-50 (#31583)
+- Make connection id validation consistent across interface (#31282)
+- Support for sorting DAGs by Last Run Date in the web UI (#31234)
+- FIPS environments: Mark uses of md5 as "not-used-for-security" (#31171)
+- Validate connection IDs (#31140)
+- Add Python 3.11 support (#27264)
+- Add fullname to owner on logging (#30185)
+
 Airflow 2.6.1 (2023-05-16)
 --------------------------
 
